@@ -1,0 +1,61 @@
+---
+const { t: testimonios } = Astro.props;
+
+const fila1 = [...testimonios, ...testimonios, ...testimonios];
+const fila2 = [...testimonios, ...testimonios, ...testimonios];
+---
+
+<div class="flex flex-col relative group">
+  <div class="flex overflow-hidden">
+    <div
+      class="flex animate-marquee gap-6 py-3 group-hover:[animation-play-state:paused]"
+    >
+      {
+        fila1.map((t) => (
+          <div class="w-[280px] md:w-[400px] shrink-0 bg-slate-50 p-6 md:p-8 rounded-4xl border border-slate-100 transition-all duration-500 hover:bg-white hover:shadow-lg">
+            <p class="text-slate-600 font-light italic text-sm whitespace-normal leading-relaxed mb-4">
+              "{t.content}"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="h-px w-4 bg-brand-primary" />
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-900">
+                {t.name}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="flex overflow-hidden justify-end">
+    <div
+      class="flex animate-marquee-reverse gap-6 py-3 group-hover:[animation-play-state:paused]"
+    >
+      {
+        fila2.map((t) => (
+          <div class="w-[280px] md:w-[400px] shrink-0 bg-slate-50 p-6 md:p-8 rounded-4xl border border-slate-100 transition-all duration-500 hover:bg-white hover:shadow-lg">
+            <p class="text-slate-600 font-light italic text-sm whitespace-normal leading-relaxed mb-4">
+              "{t.content}"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="h-px w-4 bg-brand-primary" />
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-900">
+                {t.name}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-48 bg-linear-to-r from-white via-white/80 to-transparent z-10"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-48 bg-linear-to-l from-white via-white/80 to-transparent z-10"
+  >
+  </div>
+</div>

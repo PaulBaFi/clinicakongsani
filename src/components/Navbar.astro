@@ -1,0 +1,168 @@
+---
+import { contacto } from "@/lib/data";
+import { Phone, Menu, X, Calendar, ArrowUpRight } from "@lucide/astro";
+
+const pages = [
+  { label: "Inicio", url: "/" },
+  { label: "Tratamientos", url: "/#tratamientos" },
+  { label: "Preguntas", url: "/#faqs" },
+  { label: "Sobre mí", url: "/sobre-mi" },
+];
+---
+
+<nav
+  id="main-nav"
+  class="fixed z-50 top-0 left-0 w-full transition-all duration-500 ease-in-out tracking-[0.15em] uppercase font-bold text-[10px] md:text-[11px]"
+>
+  <div class="px-6 transition-all duration-500" id="nav-container">
+    <div
+      class="container mx-auto flex items-center justify-between gap-8 py-6 transition-all duration-500"
+      id="nav-content"
+    >
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden p-2 text-slate-900 hover:text-brand-primary transition-colors"
+        aria-label="Abrir menú"
+      >
+        <Menu size={24} id="icon-menu" />
+        <X size={24} id="icon-close" class="hidden" />
+      </button>
+
+      <ul class="hidden lg:flex items-center gap-10 text-slate-600">
+        <li>
+          <a href="/">
+            <h2 class="tracking-tight text-lg font-serif">Kong San I</h2>
+            <p class="text-[10px] tracking-wider uppercase opacity-50">
+              Clínica Odontológica
+            </p>
+          </a>
+        </li>
+        {
+          pages.map((item) => (
+            <li>
+              <a
+                href={item.url}
+                class="hover:text-brand-primary transition-colors relative group py-2"
+              >
+                {item.label}
+                <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full group-hover:left-0" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="flex items-center gap-4 md:gap-6">
+        <a
+          href={`https://wa.me/${contacto.whatsapp.replace(/\s+/g, "")}`}
+          target="_blank"
+          class="hidden sm:flex items-center gap-2 text-slate-500 hover:text-brand-primary transition-colors group"
+        >
+          <div
+            class="p-2 rounded-full bg-slate-50 group-hover:bg-brand-primary/10 transition-colors"
+          >
+            <Phone size={14} />
+          </div>
+          <span class="hidden md:inline">{contacto.whatsapp}</span>
+        </a>
+
+        <a
+          href="#reserva"
+          class="relative inline-flex items-center justify-center px-5 py-3 md:px-6 md:py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-brand-primary rounded-full group shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 active:scale-95"
+        >
+          <span
+            class="absolute inset-0 w-full h-full bg-linear-to-br from-brand-primary via-brand-primary to-brand-dark"
+          ></span>
+          <span
+            class="relative text-[10px] md:text-xs tracking-widest uppercase"
+            >Agendar una cita</span
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-[70px] bg-white z-40 translate-x-full transition-transform duration-500 lg:hidden"
+  >
+    <div class="flex flex-col p-8 gap-8">
+      {
+        pages.map((item) => (
+          <a
+            href={item.url}
+            class="text-xl text-slate-900 border-b border-slate-100 pb-4 flex justify-between items-center group"
+            id="mobile-link"
+          >
+            {item.label}
+            <ArrowUpRight
+              size={18}
+              class="text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"
+            />
+          </a>
+        ))
+      }
+
+      <div class="mt-8 space-y-6">
+        <p class="text-slate-400 text-[9px] tracking-[0.3em]">
+          Contacto Directo
+        </p>
+        <a
+          href={`tel:${contacto.whatsapp}`}
+          class="flex items-center gap-4 text-slate-700"
+        >
+          <Phone size={20} class="text-brand-primary" />
+          <span class="text-lg">{contacto.whatsapp}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById("main-nav");
+  const navContent = document.getElementById("nav-content");
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  const mobileLinks = document.querySelectorAll("#mobile-link");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      nav?.classList.add("bg-white/90", "backdrop-blur-md", "shadow-sm");
+      navContent?.classList.replace("py-6", "py-3");
+    } else {
+      nav?.classList.remove("bg-white/90", "backdrop-blur-md", "shadow-sm");
+      navContent?.classList.replace("py-3", "py-6");
+    }
+  });
+
+  function toggleMenu() {
+    const isOpened = mobileMenu?.classList.contains("translate-x-0");
+
+    if (isOpened) {
+      mobileMenu?.classList.replace("translate-x-0", "translate-x-full");
+      iconMenu?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      document.body.style.overflow = "";
+    } else {
+      mobileMenu?.classList.replace("translate-x-full", "translate-x-0");
+      iconMenu?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  mobileMenuButton?.addEventListener("click", toggleMenu);
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", toggleMenu);
+  });
+</script>
+
+<style>
+  #mobile-menu {
+    height: calc(100vh - 70px);
+  }
+</style>

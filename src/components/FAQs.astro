@@ -1,0 +1,96 @@
+---
+import { ChevronDown } from "@lucide/astro";
+import { faqs } from "@/lib/data";
+
+const midIndex = Math.ceil(faqs.length / 2);
+const col1 = faqs.slice(0, midIndex);
+const col2 = faqs.slice(midIndex);
+---
+
+<section id="faqs" class="py-24 bg-surface-100">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2
+        class="text-brand-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4"
+      >
+        Preguntas Frecuentes
+      </h2>
+      <h3 class="text-4xl md:text-5xl font-serif text-ink-primary mb-6">
+        Resolvemos tus <span class="italic font-light text-brand-primary"
+          >dudas</span
+        >
+      </h3>
+      <p class="text-slate-500 font-light">
+        La prevención comienza con la información. Aquí encontrarás respuestas a
+        las inquietudes más comunes de nuestros pacientes.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-4 items-start">
+      <div class="space-y-4">
+        {
+          col1.map((faq) => (
+            <details class="group bg-surface-100 rounded-3xl border border-base-border overflow-hidden transition-all duration-500 open:shadow-xl open:shadow-slate-200/50">
+              <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none outline-none">
+                <span class="text-slate-900 font-semibold text-sm md:text-base pr-4 group-open:text-brand-primary transition-colors">
+                  {faq.pregunta}
+                </span>
+                <div class="shrink-0 w-8 h-8 rounded-full border border-base-border flex items-center justify-center text-ink-muted group-open:rotate-180 group-open:bg-brand-primary group-open:text-white transition-all duration-500">
+                  <ChevronDown size={16} />
+                </div>
+              </summary>
+              <div class="px-6 md:px-8 pb-8">
+                <p class="text-slate-600 font-light leading-relaxed text-sm md:text-base border-t border-slate-50 pt-6">
+                  {faq.respuesta}
+                </p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+
+      <div class="space-y-4">
+        {
+          col2.map((faq) => (
+            <details class="group bg-surface-100 rounded-3xl border border-base-border overflow-hidden transition-all duration-500 open:shadow-xl open:shadow-slate-200/50">
+              <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none outline-none">
+                <span class="text-slate-900 font-semibold text-sm md:text-base pr-4 group-open:text-brand-primary transition-colors">
+                  {faq.pregunta}
+                </span>
+                <div class="shrink-0 w-8 h-8 rounded-full border border-base-border flex items-center justify-center text-ink-muted group-open:rotate-180 group-open:bg-brand-primary group-open:text-white transition-all duration-500">
+                  <ChevronDown size={16} />
+                </div>
+              </summary>
+              <div class="px-6 md:px-8 pb-8">
+                <p class="text-slate-600 font-light leading-relaxed text-sm md:text-base border-t border-base-border pt-6">
+                  {faq.respuesta}
+                </p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] summary ~ * {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

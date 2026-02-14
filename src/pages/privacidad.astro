@@ -1,0 +1,127 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Lock, Smartphone, ArrowLeft } from "@lucide/astro";
+---
+
+<BaseLayout title="Política de Privacidad | Dr. Joaquín Kong San">
+  <main class="pt-32 pb-20 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors mb-12"
+      >
+        <ArrowLeft size={14} /> Volver al inicio
+      </a>
+
+      <header class="mb-16">
+        <h1
+          class="text-4xl md:text-5xl font-serif text-ink-primary mb-6 italic"
+        >
+          Privacidad <span class="font-light text-brand-primary"
+            >y Transparencia</span
+          >
+        </h1>
+        <p class="text-slate-500 font-light text-lg">
+          Tu confianza es nuestra prioridad. En nuestra plataforma, la
+          protección de tu información personal es un compromiso fundamental.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="p-8 rounded-3xl bg-surface-200 border border-base-border">
+          <div
+            class="w-12 h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-6"
+          >
+            <Lock size={24} />
+          </div>
+          <h3
+            class="text-slate-900 font-bold uppercase tracking-widest text-xs mb-4"
+          >
+            Cero Almacenamiento
+          </h3>
+          <p class="text-sm text-ink-muted leading-relaxed font-light">
+            No guardamos nombres, teléfonos ni motivos de consulta en servidores
+            propios ni bases de datos externas.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-surface-200 border border-base-border">
+          <div
+            class="w-12 h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-6"
+          >
+            <Smartphone size={24} />
+          </div>
+          <h3
+            class="text-ink-primary font-bold uppercase tracking-widest text-xs mb-4"
+          >
+            Puente Directo
+          </h3>
+          <p class="text-sm text-ink-muted leading-relaxed font-light">
+            Nuestros formularios actúan como un puente directo que genera un
+            mensaje de WhatsApp cifrado hacia nuestro consultorio.
+          </p>
+        </div>
+      </div>
+
+      <article
+        class="prose prose-slate max-w-none prose-h2:font-serif prose-h2:text-2xl prose-h2:italic prose-h2:font-light prose-p:text-slate-600 prose-p:font-light"
+      >
+        <section class="mb-12">
+          <h2>1. Recopilación de Información</h2>
+          <p>
+            Al utilizar nuestro sistema de <strong>Reserva Digital</strong>, el
+            usuario proporciona datos como: nombre, tratamiento de interés y
+            motivo de consulta. Es importante destacar que esta información se
+            utiliza <strong>únicamente</strong> para estructurar el mensaje que el
+            usuario enviará voluntariamente vía WhatsApp.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>2. Finalidad de los Datos</h2>
+          <p>
+            El propósito exclusivo de capturar estos datos de forma temporal en
+            el navegador del usuario es facilitar el proceso de agendamiento. Al
+            presionar el botón "Confirmar por WhatsApp", el sistema redirige al
+            usuario a la aplicación oficial de WhatsApp, momento en el cual la
+            información sale de nuestro entorno web para ser procesada bajo las
+            políticas de privacidad de WhatsApp (Meta Platforms, Inc.).
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <div class="p-8 border-l-2 border-brand-primary bg-slate-50">
+            <h2 class="mt-0">3. Declaración de No Almacenamiento</h2>
+            <p class="mb-0">
+              Garantizamos formalmente que el <strong
+                >Dr. Joaquín Kong San</strong
+              > no posee bases de datos digitales derivadas de este sitio web. Una
+              vez que el mensaje es enviado o la ventana del navegador es cerrada,
+              los datos ingresados en el formulario son eliminados automáticamente
+              de la memoria temporal (session storage) de su dispositivo.
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>4. Contacto</h2>
+          <p>
+            Si tiene alguna duda sobre el manejo de su información personal,
+            puede contactarnos directamente a través de nuestro canal oficial:
+            <a
+              href="mailto:joaquinks@gmail.com"
+              class="text-brand-primary no-underline font-medium"
+              >joaquinks@gmail.com</a
+            >.
+          </p>
+        </section>
+      </article>
+
+      <footer class="mt-20 pt-10 border-t border-base-border text-center">
+        <p class="text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+          Última actualización: Febrero 2026
+        </p>
+      </footer>
+    </div>
+  </main>
+</BaseLayout>

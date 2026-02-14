@@ -1,0 +1,105 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ArrowLeft, Home, Calendar } from "@lucide/astro";
+---
+
+<BaseLayout title="Página no encontrada">
+  <main
+    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
+  >
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-primary/5 rounded-full blur-[120px]"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-slate-100 rounded-full blur-[100px]"
+      >
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="relative inline-block mb-12">
+          <span
+            class="text-[180px] md:text-[240px] font-serif leading-none text-slate-100 select-none"
+          >
+            404
+          </span>
+          <div class="absolute inset-0 mt-12 flex items-center justify-center">
+            <div
+              class="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center"
+            >
+              <span
+                class="text-4xl md:text-5xl italic font-serif text-brand-primary"
+                >!</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-serif text-slate-900 mb-6 italic">
+          Esta página <span
+            class="font-light text-slate-400 text-3xl md:text-4xl"
+            >no está en su lugar.</span
+          >
+        </h1>
+
+        <p
+          class="text-slate-500 font-light text-lg mb-12 max-w-lg mx-auto leading-relaxed"
+        >
+          Al igual que una sonrisa perfecta, cada pieza cuenta. Parece que el
+          enlace que buscas ha sido movido o ya no existe.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-6"
+        >
+          <a
+            href="/"
+            class="flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-brand-primary hover:shadow-xl active:scale-95 w-full sm:w-auto"
+          >
+            <Home size={16} />
+            Volver al inicio
+          </a>
+
+          <a
+            href="/#reserva"
+            class="group flex items-center gap-3 text-slate-900 font-bold text-[11px] uppercase tracking-[0.2em] hover:text-brand-primary transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center group-hover:border-brand-primary transition-colors"
+            >
+              <Calendar size={18} />
+            </div>
+            Agendar consulta
+          </a>
+        </div>
+
+        <button
+          onclick="history.back()"
+          class="mt-16 flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest text-slate-400 hover:text-slate-900 transition-colors"
+        >
+          <ArrowLeft size={14} />
+          Regresar a la página anterior
+        </button>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  main span {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+</style>

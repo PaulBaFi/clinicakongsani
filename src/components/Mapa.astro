@@ -1,0 +1,109 @@
+---
+import { contacto } from "@/lib/data";
+import { MapPin, ExternalLink } from "@lucide/astro";
+
+const googleMapsIframe =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6611417565983!2d-99.1674485!3d19.4270245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzM3LjMiTiA5OcKwMTAnMDIuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx";
+const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contacto.address)}`;
+---
+
+<section
+  id="ubicacion"
+  class="relative w-full min-h-[600px] md:min-h-[800px] flex items-center justify-center overflow-hidden py-20"
+>
+  <div
+    class="absolute inset-0 z-0 flex items-center justify-center p-0 md:p-12 lg:p-20"
+  >
+    <div
+      class="relative w-full h-full mx-auto md:rounded-4xl overflow-hidden border border-base-border"
+    >
+      <iframe
+        src={googleMapsIframe}
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="pointer-events-none grayscale-[0.3] contrast-[1.1] brightness-[0.9] scale-110"
+      >
+      </iframe>
+      <div class="absolute inset-0 bg-ink-primary/10 pointer-events-none"></div>
+    </div>
+  </div>
+
+  <div class="container mx-auto p-6 relative z-10 flex justify-center">
+    <div
+      class="w-full max-w-md bg-white/90 backdrop-blur-2xl p-8 md:p-12 rounded-2xl border border-white/50 shadow-2xl text-center transform transition-all duration-700 hover:scale-[1.02]"
+    >
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 bg-brand-primary text-white rounded-2xl mb-8 shadow-lg shadow-brand-primary/30 md:-mt-24 border-4 border-white"
+      >
+        <MapPin size={32} />
+      </div>
+
+      <h3 class="text-3xl font-serif text-ink-primary mb-6 italic tracking-tight">
+        Visítanos
+      </h3>
+
+      <div class="space-y-6 mb-10">
+        <div class="flex flex-col items-center gap-2">
+          <span
+            class="text-[10px] uppercase font-bold text-brand-primary tracking-[0.2em]"
+            >Dirección</span
+          >
+          <p class="text-slate-700 font-light leading-relaxed">
+            {contacto.address}
+            <br />
+            <span class="font-medium text-ink-primary tracking-wide"
+              >Pisco, Ica</span
+            >
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center gap-2">
+          <span
+            class="text-[10px] uppercase font-bold text-ink-muted tracking-[0.2em]"
+            >Horario de Atención</span
+          >
+          <div class="text-ink-secondary font-light text-sm">
+            <p>
+              Lunes a Viernes: <span class="text-ink-primary font-medium"
+                >9:00 AM - 7:00 PM</span>
+            </p>
+            <p>
+              Sábados: <span class="text-ink-primary font-medium"
+                >9:00 AM - 2:00 PM</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href={googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-ink-primary text-white rounded-full font-bold text-xs uppercase tracking-widest overflow-hidden transition-all hover:bg-brand-primary hover:shadow-xl active:scale-95"
+      >
+        <span class="relative z-10 flex items-center gap-2">
+          Cómo llegar <ExternalLink size={14} />
+        </span>
+        <div
+          class="absolute inset-0 bg-linear-to-r from-brand-primary to-brand-dark opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  iframe {
+    filter: saturate(0.8) contrast(1.1);
+    transition: all 0.5s ease;
+  }
+
+  #ubicacion:hover iframe {
+    filter: saturate(1) contrast(1);
+  }
+</style>

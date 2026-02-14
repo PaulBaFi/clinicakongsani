@@ -1,0 +1,168 @@
+---
+import { problemasDentales, contacto } from "@/lib/data";
+import {
+  Instagram,
+  Facebook,
+  Linkedin,
+  MapPin,
+  Phone,
+  Mail,
+  ArrowUpRight,
+  // Asumiendo que podrías usar Tiktok si está en tu data
+  Twitter,
+} from "@lucide/astro";
+
+const currentYear = new Date().getFullYear();
+
+const enlaces = [
+  { label: "Inicio", url: "/" },
+  { label: "Sobre mí", url: "/sobre-mi" },
+  { label: "Tratamientos", url: "/#tratamientos" },
+  { label: "Preguntas Frecuentes", url: "/#faqs" },
+];
+
+// Solo tomamos tratamientos si el array existe y tiene contenido
+const tratamientos = problemasDentales?.slice(0, 4) || [];
+
+// Mapeo de iconos para redes sociales
+const socialIcons = [
+  { link: contacto.social.instagram, Icon: Instagram },
+  { link: contacto.social.facebook, Icon: Facebook },
+  // Agregado por si decides llenar estos campos luego
+  { link: contacto.social.tiktok, Icon: Linkedin },
+].filter((social) => social.link && social.link !== ""); // FILTRO CRÍTICO: Solo los que tienen URL
+---
+
+<footer class="bg-slate-900 text-slate-400 pt-20 pb-10">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div class="space-y-6">
+        <div class="text-white">
+          <h2 class="text-2xl font-serif">Kong San I</h2>
+          <p class="text-[10px] tracking-[0.3em] uppercase opacity-50">
+            Dr. Joaquin Kong San
+          </p>
+        </div>
+        <p class="text-sm font-light leading-relaxed">
+          Transformando sonrisas con precisión técnica y visión artística en el
+          corazón de la ciudad.
+        </p>
+
+        {
+          socialIcons.length > 0 && (
+            <div class="flex gap-4">
+              {socialIcons.map(({ link, Icon }) => (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all duration-500"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-8">
+          Navegación
+        </h4>
+        <ul class="space-y-4">
+          {
+            enlaces.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  class="text-sm hover:text-brand-light flex items-center group transition-colors"
+                >
+                  <ArrowUpRight
+                    size={14}
+                    class="mr-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"
+                  />
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hidden lg:block">
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-8">
+          Especialidades
+        </h4>
+        <ul class="space-y-4">
+          {
+            tratamientos.length > 0 ? (
+              tratamientos.map((item) => (
+                <li class="text-sm font-light">{item.title}</li>
+              ))
+            ) : (
+              <li class="text-sm font-light opacity-50 italic">
+                Consultar servicios
+              </li>
+            )
+          }
+        </ul>
+      </div>
+
+      <div class="space-y-6">
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-8">
+          Ubicación
+        </h4>
+        <div class="space-y-4">
+          {
+            contacto.address && (
+              <div class="flex items-start gap-4">
+                <MapPin size={20} class="text-brand-primary shrink-0" />
+                <p class="text-sm leading-snug">{contacto.address}</p>
+              </div>
+            )
+          }
+
+          {
+            contacto.phone && (
+              <div class="flex items-center gap-4">
+                <Phone size={18} class="text-brand-primary shrink-0" />
+                <p class="text-sm">{contacto.phone}</p>
+              </div>
+            )
+          }
+
+          {
+            contacto.email && (
+              <div class="flex items-center gap-4">
+                <Mail size={18} class="text-brand-primary shrink-0" />
+                <a
+                  href={`mailto:${contacto.email}`}
+                  class="text-sm hover:text-white transition-colors"
+                >
+                  {contacto.email}
+                </a>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
+    >
+      <p class="text-[10px] uppercase tracking-widest opacity-40">
+        © {currentYear} Kong San I. Todos los derechos reservados.
+      </p>
+      <div class="flex gap-8 text-[10px] uppercase tracking-widest">
+        <a
+          href="/privacidad"
+          class="opacity-40 hover:opacity-100 transition-opacity"
+        >
+          Privacidad
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

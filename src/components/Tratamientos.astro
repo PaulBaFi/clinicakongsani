@@ -1,0 +1,73 @@
+---
+import { problemasDentales } from "@/lib/data";
+import { ArrowUpRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+import TratamientosCard from "./TratamientosCard.astro";
+---
+
+<section id="tratamientos" class="py-24 bg-white overflow-hidden px-0 md:px-6">
+  <div class="container mx-auto px-6 md:px-0">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
+    >
+      <div class="max-w-2xl">
+        <h2
+          class="text-brand-primary font-bold tracking-[0.2em] uppercase text-xs mb-4"
+        >
+          Tratamientos
+        </h2>
+        <h3
+          class="text-4xl md:text-6xl font-serif text-slate-900 leading-[1.1]"
+        >
+          Soluciones integrales para
+          <span class="italic text-brand-primary font-light"
+            >tu bienestar dental</span
+          >
+        </h3>
+      </div>
+
+      <p
+        class="max-w-xs text-slate-500 text-sm leading-relaxed border-l border-slate-200 pl-6"
+      >
+        Utilizamos protocolos avanzados y fotografía clínica para asegurar
+        resultados estéticos y funcionales de alta precisión.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="flex overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 px-6 md:px-0 md:container md:mx-auto"
+  >
+    {problemasDentales.map((item) => <TratamientosCard p={item} />)}
+
+    <div
+      class="min-w-[80vw] md:min-w-full snap-center group relative  rounded-[2.5rem] overflow-hidden bg-brand-primary flex flex-col justify-center items-center p-10 text-center text-white shadow-xl"
+    >
+      <div class="relative z-10">
+        <h4 class="text-3xl font-serif italic mb-6">
+          ¿Buscas una transformación total?
+        </h4>
+        <p class="text-white/80 text-sm mb-10 font-light leading-relaxed">
+          Agenda una cita de valoración y diseñemos tu plan ideal.
+        </p>
+        <a
+          href="#contacto"
+          class="inline-block w-full py-4 bg-white text-brand-primary rounded-2xl font-bold tracking-widest uppercase text-[10px] shadow-lg active:scale-95 transition-transform"
+        >
+          Contactar Especialista
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

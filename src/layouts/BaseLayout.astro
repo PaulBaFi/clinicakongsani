@@ -1,0 +1,25 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Footer from "@/components/Footer.astro";
+import Navbar from "@/components/Navbar.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  desc?: string;
+}
+
+const { title, desc } = Astro.props;
+---
+
+<html lang="es">
+  <BaseHead>
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+  </BaseHead>
+  <body>
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>

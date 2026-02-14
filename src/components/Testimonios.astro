@@ -1,0 +1,21 @@
+---
+import { testimonios } from "@/lib/data";
+import TestimoniosCarrusel from "./TestimoniosCarrusel.astro";
+---
+
+<section class="py-20 bg-white overflow-hidden">
+  <div class="text-center max-w-xl mx-auto mb-20">
+    <h2
+      class="text-brand-primary font-bold tracking-[0.25em] uppercase text-xs mb-4"
+    >
+      Testimonios
+    </h2>
+    <h3 class="text-4xl md:text-6xl font-serif text-ink-primary leading-tight">
+      Lo que dicen <span class="italic font-light text-brand-primary"
+        >nuestros pacientes</span
+      >
+    </h3>
+  </div>
+
+  <TestimoniosCarrusel t={testimonios} />
+</section>
