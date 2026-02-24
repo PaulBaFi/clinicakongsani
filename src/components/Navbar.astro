@@ -1,6 +1,7 @@
 ---
 import { contacto } from "@/lib/data";
-import { Phone, Menu, X, Calendar, ArrowUpRight } from "@lucide/astro";
+import { Phone, Menu, X, ArrowUpRight } from "@lucide/astro";
+import { Image } from "astro:assets";
 
 const pages = [
   { label: "Inicio", url: "/" },
@@ -31,10 +32,14 @@ const pages = [
       <ul class="hidden lg:flex items-center gap-10 text-slate-600">
         <li>
           <a href="/">
-            <h2 class="tracking-tight text-lg font-serif">Kong San I</h2>
-            <p class="text-[10px] tracking-wider uppercase opacity-50">
-              Clínica Odontológica
-            </p>
+            <Image
+              src="/assets/brands/logo-completo.webp"
+              alt="Logo Kong San I"
+              width={300}
+              height={100}
+              loading="lazy"
+              class="w-auto h-10"
+            />
           </a>
         </li>
         {
@@ -67,7 +72,7 @@ const pages = [
         </a>
 
         <a
-          href="#reserva"
+          href="/#contacto"
           class="relative inline-flex items-center justify-center px-5 py-3 md:px-6 md:py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-brand-primary rounded-full group shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 active:scale-95"
         >
           <span
